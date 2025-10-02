@@ -1,0 +1,50 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          cd web
+          npm install
+      
+      - name: Build React app
+        run: |
+          cd web
+          npm run build
+      
+      - name: Create release package
+        run: |
+          mkdir -p sd-cases/web
+          cp -r web/build sd-cases/web/
+          cp -r client sd-cases/
+          cp -r server sd-cases/
+          cp -r bridge sd-cases/
+          cp config.lua sd-cases/
+          cp fxmanifest.lua sd-cases/
+          cp README.MD sd-cases/
+          zip -r sd-cases-${{ github.ref_name }}.zip sd-cases
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: sd-cases-${{ github.ref_name }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

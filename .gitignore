@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+web/node_modules/
+
+# Build output
+web/build/
+dist/
+*.min.js
+*.min.css
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE/Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# FiveM specific (optional - remove if you want these tracked)
+# cache/
+# *.rpf
+
+# Debug files
+*.map
+!*.css.map
+!*.js.map
