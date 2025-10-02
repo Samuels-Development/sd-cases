@@ -1,10 +1,18 @@
 # sd-cases
 
-A comprehensive loot case system for FiveM servers that provides an interactive spinning wheel interface for opening mystery cases with randomized rewards.
-
-## 📋 Description
-
 `sd-cases` adds an engaging loot box/case opening system to your FiveM server. Players can obtain various types of cases from different activities (heists, robberies, etc.) and open them through an exciting spinning wheel interface to receive randomized rewards based on weighted probabilities.
+
+## Preview
+![image1](https://i.ibb.co/NdDbYfFj/Five-M-GTAProcess-Bd-DRsx-GQg-C.png)
+![image2](https://i.ibb.co/CpgFbK8Z/Five-M-GTAProcess-Gzh4-Un-O8e-I.png)
+![video](https://streamable.com/li22zh)
+
+## 🔔 Contact
+
+Author: Samuel#0008  
+Discord: [Join the Discord](https://discord.gg/FzPehMQaBQ)  
+Store: [Click Here](https://fivem.samueldev.shop)
+
 
 ## ✨ Features
 
@@ -17,16 +25,14 @@ A comprehensive loot case system for FiveM servers that provides an interactive 
 
 ## 💾 Installation
 
-1. Download the resource and place it in your server's resources folder
-2. Add the case items to your inventory system (ox_inventory items provided below)
-3. Ensure the resource in your server.cfg:
-   ```
-   ensure sd-cases
-   ```
+1. Download the latest release from the [GitHub repository](https://github.com/Samuels-Development/sd-cases/releases).
+2. Extract the downloaded file and rename the folder to `sd-cases`.
+3. Place the `sd-cases` folder into your server's `resources` directory.
+4. Add `ensure sd-cases` to your `server.cfg` to ensure the resource starts with your server.
 
 ## 📖 Dependencies
 
-- **ox_lib** - Required for UI notifications and callbacks
+- **ox_lib**
 
 ## 🎮 Usage
 
@@ -50,7 +56,7 @@ Higher weight values = higher chance of receiving that item
 
 ## 📦 Ox Inventory Items
 
-Add these to your ox_inventory `items.lua`:
+Add these to your ox_inventory `items.lua`, if you want to use my default cases:
 
 ```lua
 ["fleeca_case"] = {
