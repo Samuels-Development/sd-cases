@@ -3,9 +3,7 @@
 `sd-cases` adds an engaging loot box/case opening system to your FiveM server. Players can obtain various types of cases from different activities (heists, robberies, etc.) and open them through an exciting spinning wheel interface to receive randomized rewards based on weighted probabilities.
 
 ## Preview
-![image1](https://i.ibb.co/NdDbYfFj/Five-M-GTAProcess-Bd-DRsx-GQg-C.png)
-
-![image2](https://i.ibb.co/CpgFbK8Z/Five-M-GTAProcess-Gzh4-Un-O8e-I.png)
+![image1](https://i.ibb.co/S4YGvH6n/Five-M-GTAProcess-Bd-DRsx-GQg-C.png)
 
 ## 🔔 Contact
 
