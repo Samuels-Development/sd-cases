@@ -23,7 +23,7 @@ Store: [Click Here](https://fivem.samueldev.shop)
 
 ## 💾 Installation
 
-1. Download the latest release from the [GitHub repository](https://github.com/Samuels-Development/sd-cases/releases).
+1. Download the latest release from the [GitHub repository](https://github.com/Samuels-Development/sd-cases/releases). (NOT SOURCE)
 2. Extract the downloaded file and rename the folder to `sd-cases`.
 3. Place the `sd-cases` folder into your server's `resources` directory.
 4. Add `ensure sd-cases` to your `server.cfg` to ensure the resource starts with your server.
