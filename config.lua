@@ -4,8 +4,26 @@ return {
     SpinCooldown = 3000, -- 3 seconds cooldown between spins
 
     -- Case definitions - item names map to case types
+    -- WEIGHT SYSTEM EXPLANATION:
+    -- The "weight" value determines the probability of getting each item when opening a case.
+    -- Higher weight = higher chance of receiving that item
+    -- The probability is calculated as: item_weight / total_weight_of_all_items
+    --
+    -- Example for fleeca_case:
+    -- Total weight = 60 + 40 + 25 + 10 + 5 = 140
+    -- Marked Bills (weight 60): 60/140 = 42.86% chance
+    -- Bank Cards (weight 40): 40/140 = 28.57% chance
+    -- Band of Notes (weight 25): 25/140 = 17.86% chance
+    -- Advanced Lockpick (weight 10): 10/140 = 7.14% chance
+    -- Diamond Ring (weight 5): 5/140 = 3.57% chance
+    --
+    -- Tips for configuring weights:
+    -- - Common items: weight 50-100 (very likely to drop)
+    -- - Uncommon items: weight 20-40 (moderate chance)
+    -- - Rare items: weight 5-15 (low chance)
+    -- - Ultra rare items: weight 1-5 (very low chance)
     Cases = {
-        fleeca_case = {
+        fleeca_case = { -- Item Name
             name = 'Fleeca Bank Case',
             title = 'FLEECA CASE',
             titleColor = '#10B981',

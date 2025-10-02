@@ -15,38 +15,6 @@ A comprehensive loot case system for FiveM servers that provides an interactive 
 - **Customizable** - Easy to add new cases or modify existing ones
 - **Smooth Animations** - 8-second spin duration with 3-second cooldown
 
-## 📦 Available Cases
-
-### 1. **Fleeca Bank Case**
-   - Source: Fleeca Bank heists
-   - Rewards: Security cards, cash, jewelry, lockpicks
-   - Color: Green (#10B981)
-
-### 2. **House Robbery Case**
-   - Source: House burglaries
-   - Rewards: Electronics, watches, cash, household items
-   - Color: Orange (#F59E0B)
-
-### 3. **Chop Shop Case**
-   - Source: Vehicle chop shop activities
-   - Rewards: Car parts, repair kits, scrap metal, nitrous
-   - Color: Red (#EF4444)
-
-### 4. **Jewelry Store Case**
-   - Source: Vangelico jewelry store heists
-   - Rewards: Gold chains, diamond rings, luxury watches, gold bars
-   - Color: Purple (#A855F7)
-
-### 5. **Pacific Bank Case**
-   - Source: Pacific Standard Bank vault
-   - Rewards: Gold bars, large cash bundles, crypto USB, secured safes
-   - Color: Gold (#FFD700)
-
-### 6. **Casino Heist Case**
-   - Source: Diamond Casino heists
-   - Rewards: Expensive champagne, diamond jewelry, presidential watches, cash
-   - Color: Dark Red (#DC2626)
-
 ## 💾 Installation
 
 1. Download the resource and place it in your server's resources folder
@@ -58,7 +26,6 @@ A comprehensive loot case system for FiveM servers that provides an interactive 
 
 ## 📖 Dependencies
 
-- **ox_inventory** - Required for item management
 - **ox_lib** - Required for UI notifications and callbacks
 
 ## 🎮 Usage
@@ -218,19 +185,3 @@ my_custom_case = {
 
 2. Add the corresponding item to ox_inventory
 3. Add the case image to your inventory images
-
-## 🔧 Exports
-
-### Client Exports
-- `openCase(caseType)` - Opens a specific case type
-
-### Server Exports
-- `giveCase(source, caseType, amount)` - Gives a case to a player
-
-## 📞 Support
-
-For issues, questions, or suggestions, please visit the GitHub repository or contact the developer.
-
-## 📄 License
-
-This resource is provided as-is. Please respect the developer's work and do not redistribute without permission.
