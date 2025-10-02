@@ -14,7 +14,6 @@ return {
                     id = 1,
                     name = 'Marked Bills',
                     weight = 60,
-                    amount = 5,
                     reward = {
                         type = 'money',
                         amount = 250,
@@ -26,7 +25,6 @@ return {
                     name = 'Bank Cards',
                     item = 'security_card_01',
                     weight = 40,
-                    amount = 3,
                     reward = {
                         type = 'item',
                         item = 'security_card_01',
@@ -35,37 +33,34 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Gold Coins',
-                    item = 'goldcoin',
+                    name = 'Band of Notes',
+                    item = 'bands',
                     weight = 25,
-                    amount = 2,
                     reward = {
                         type = 'item',
-                        item = 'goldcoin',
+                        item = 'bands',
                         amount = 5
                     }
                 },
                 {
                     id = 4,
-                    name = 'Safety Deposit Key',
-                    item = 'safecracker',
+                    name = 'Advanced Lockpick',
+                    item = 'advancedlockpick',
                     weight = 10,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'safecracker',
+                        item = 'advancedlockpick',
                         amount = 1
                     }
                 },
                 {
                     id = 5,
-                    name = 'Diamond',
-                    item = 'diamond',
+                    name = 'Diamond Ring',
+                    item = 'diamond_ring',
                     weight = 5,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'diamond',
+                        item = 'diamond_ring',
                         amount = 1
                     }
                 }
@@ -80,7 +75,6 @@ return {
                     id = 1,
                     name = 'Cash Stash',
                     weight = 50,
-                    amount = 3,
                     reward = {
                         type = 'money',
                         amount = 150,
@@ -89,25 +83,23 @@ return {
                 },
                 {
                     id = 2,
-                    name = 'Jewelry',
-                    item = 'gold_ring',
+                    name = 'Gold Chain',
+                    item = 'goldchain',
                     weight = 35,
-                    amount = 2,
                     reward = {
                         type = 'item',
-                        item = 'gold_ring',
+                        item = 'goldchain',
                         amount = 3
                     }
                 },
                 {
                     id = 3,
-                    name = 'Electronics',
-                    item = 'laptop',
+                    name = 'Small TV',
+                    item = 'small_tv',
                     weight = 30,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'laptop',
+                        item = 'small_tv',
                         amount = 1
                     }
                 },
@@ -116,7 +108,6 @@ return {
                     name = 'Rolex Watch',
                     item = 'rolex',
                     weight = 15,
-                    amount = 1,
                     reward = {
                         type = 'item',
                         item = 'rolex',
@@ -125,13 +116,12 @@ return {
                 },
                 {
                     id = 5,
-                    name = 'Art Painting',
-                    item = 'paintingg',
+                    name = 'Toaster',
+                    item = 'toaster',
                     weight = 8,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'paintingg',
+                        item = 'toaster',
                         amount = 1
                     }
                 },
@@ -139,7 +129,6 @@ return {
                     id = 6,
                     name = 'Safe Contents',
                     weight = 3,
-                    amount = 1,
                     reward = {
                         type = 'money',
                         amount = 1000,
@@ -158,7 +147,6 @@ return {
                     name = 'Scrap Metal',
                     item = 'metalscrap',
                     weight = 60,
-                    amount = 10,
                     reward = {
                         type = 'item',
                         item = 'metalscrap',
@@ -167,49 +155,34 @@ return {
                 },
                 {
                     id = 2,
-                    name = 'Car Battery',
-                    item = 'car_battery',
+                    name = 'Steel Parts',
+                    item = 'steel',
                     weight = 40,
-                    amount = 2,
                     reward = {
                         type = 'item',
-                        item = 'car_battery',
-                        amount = 1
+                        item = 'steel',
+                        amount = 5
                     }
                 },
                 {
                     id = 3,
-                    name = 'Turbo Kit',
-                    item = 'turbo',
-                    weight = 20,
-                    amount = 1,
+                    name = 'Nitrous',
+                    item = 'nitrous',
+                    weight = 15,
                     reward = {
                         type = 'item',
-                        item = 'turbo',
+                        item = 'nitrous',
                         amount = 1
                     }
                 },
                 {
                     id = 4,
-                    name = 'NOS Bottle',
-                    item = 'nos',
-                    weight = 15,
-                    amount = 1,
-                    reward = {
-                        type = 'item',
-                        item = 'nos',
-                        amount = 1
-                    }
-                },
-                {
-                    id = 5,
-                    name = 'Racing ECU',
-                    item = 'racing_ecu',
+                    name = 'Electronic Kit',
+                    item = 'electronickit',
                     weight = 5,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'racing_ecu',
+                        item = 'electronickit',
                         amount = 1
                     }
                 }
@@ -225,7 +198,6 @@ return {
                     name = 'Gold Chains',
                     item = 'goldchain',
                     weight = 50,
-                    amount = 5,
                     reward = {
                         type = 'item',
                         item = 'goldchain',
@@ -237,7 +209,6 @@ return {
                     name = 'Diamond Ring',
                     item = 'diamond_ring',
                     weight = 30,
-                    amount = 2,
                     reward = {
                         type = 'item',
                         item = 'diamond_ring',
@@ -246,13 +217,12 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Rare Diamond',
-                    item = 'diamond',
+                    name = 'Gold Bar',
+                    item = 'goldbar',
                     weight = 15,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'diamond',
+                        item = 'goldbar',
                         amount = 2
                     }
                 },
@@ -261,7 +231,6 @@ return {
                     name = 'Luxury Watch',
                     item = 'rolex',
                     weight = 20,
-                    amount = 1,
                     reward = {
                         type = 'item',
                         item = 'rolex',
@@ -270,13 +239,12 @@ return {
                 },
                 {
                     id = 5,
-                    name = 'Pink Diamond',
-                    item = 'pink_diamond',
+                    name = 'Roll of Notes',
+                    item = 'rolls',
                     weight = 3,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'pink_diamond',
+                        item = 'rolls',
                         amount = 1
                     }
                 }
@@ -292,7 +260,6 @@ return {
                     name = 'Gold Bars',
                     item = 'goldbar',
                     weight = 35,
-                    amount = 3,
                     reward = {
                         type = 'item',
                         item = 'goldbar',
@@ -303,7 +270,6 @@ return {
                     id = 2,
                     name = 'Mega Cash Bundle',
                     weight = 40,
-                    amount = 1,
                     reward = {
                         type = 'money',
                         amount = 2000,
@@ -312,13 +278,12 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Bearer Bonds',
-                    item = 'bearer_bonds',
+                    name = 'Band of Notes',
+                    item = 'bands',
                     weight = 20,
-                    amount = 5,
                     reward = {
                         type = 'item',
-                        item = 'bearer_bonds',
+                        item = 'bands',
                         amount = 3
                     }
                 },
@@ -327,7 +292,6 @@ return {
                     name = 'Crypto USB',
                     item = 'cryptostick',
                     weight = 10,
-                    amount = 1,
                     reward = {
                         type = 'item',
                         item = 'cryptostick',
@@ -336,13 +300,12 @@ return {
                 },
                 {
                     id = 5,
-                    name = 'Panther Statue',
-                    item = 'panther',
+                    name = 'Secured Safe',
+                    item = 'secured_safe',
                     weight = 2,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'panther',
+                        item = 'secured_safe',
                         amount = 1
                     }
                 }
@@ -355,21 +318,19 @@ return {
             items = {
                 {
                     id = 1,
-                    name = 'Casino Chips',
-                    item = 'casino_chips',
+                    name = 'Roll of Notes',
+                    item = 'rolls',
                     weight = 60,
-                    amount = 100,
                     reward = {
                         type = 'item',
-                        item = 'casino_chips',
-                        amount = 50
+                        item = 'rolls',
+                        amount = 10
                     }
                 },
                 {
                     id = 2,
                     name = 'Cash Trolley',
                     weight = 30,
-                    amount = 1,
                     reward = {
                         type = 'money',
                         amount = 1500,
@@ -378,37 +339,34 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Artwork',
-                    item = 'paintingg',
+                    name = 'Expensive Champagne',
+                    item = 'expensive_champagne',
                     weight = 25,
-                    amount = 2,
                     reward = {
                         type = 'item',
-                        item = 'paintingg',
+                        item = 'expensive_champagne',
                         amount = 1
                     }
                 },
                 {
                     id = 4,
                     name = 'Diamond Necklace',
-                    item = 'diamond_necklace',
+                    item = 'md_diamondnecklace',
                     weight = 10,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'diamond_necklace',
+                        item = 'md_diamondnecklace',
                         amount = 1
                     }
                 },
                 {
                     id = 5,
-                    name = 'Pink Diamond',
-                    item = 'pink_diamond',
+                    name = 'Presidential Watch',
+                    item = 'md_presidentialwatch',
                     weight = 1,
-                    amount = 1,
                     reward = {
                         type = 'item',
-                        item = 'pink_diamond',
+                        item = 'md_presidentialwatch',
                         amount = 1
                     }
                 }

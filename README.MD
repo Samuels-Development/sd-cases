@@ -1,8 +1,91 @@
-https://docs.samueldev.shop
+# sd-cases
 
-## Items
+A comprehensive loot case system for FiveM servers that provides an interactive spinning wheel interface for opening mystery cases with randomized rewards.
 
+## 📋 Description
 
+`sd-cases` adds an engaging loot box/case opening system to your FiveM server. Players can obtain various types of cases from different activities (heists, robberies, etc.) and open them through an exciting spinning wheel interface to receive randomized rewards based on weighted probabilities.
+
+## ✨ Features
+
+- **Interactive Spinning Wheel UI** - Visually appealing case opening animation
+- **Multiple Case Types** - 6 pre-configured case types with unique reward pools
+- **Weighted Reward System** - Configurable probability weights for different rewards
+- **Flexible Reward Types** - Support for both items and money rewards
+- **Customizable** - Easy to add new cases or modify existing ones
+- **Smooth Animations** - 8-second spin duration with 3-second cooldown
+
+## 📦 Available Cases
+
+### 1. **Fleeca Bank Case**
+   - Source: Fleeca Bank heists
+   - Rewards: Security cards, cash, jewelry, lockpicks
+   - Color: Green (#10B981)
+
+### 2. **House Robbery Case**
+   - Source: House burglaries
+   - Rewards: Electronics, watches, cash, household items
+   - Color: Orange (#F59E0B)
+
+### 3. **Chop Shop Case**
+   - Source: Vehicle chop shop activities
+   - Rewards: Car parts, repair kits, scrap metal, nitrous
+   - Color: Red (#EF4444)
+
+### 4. **Jewelry Store Case**
+   - Source: Vangelico jewelry store heists
+   - Rewards: Gold chains, diamond rings, luxury watches, gold bars
+   - Color: Purple (#A855F7)
+
+### 5. **Pacific Bank Case**
+   - Source: Pacific Standard Bank vault
+   - Rewards: Gold bars, large cash bundles, crypto USB, secured safes
+   - Color: Gold (#FFD700)
+
+### 6. **Casino Heist Case**
+   - Source: Diamond Casino heists
+   - Rewards: Expensive champagne, diamond jewelry, presidential watches, cash
+   - Color: Dark Red (#DC2626)
+
+## 💾 Installation
+
+1. Download the resource and place it in your server's resources folder
+2. Add the case items to your inventory system (ox_inventory items provided below)
+3. Ensure the resource in your server.cfg:
+   ```
+   ensure sd-cases
+   ```
+
+## 📖 Dependencies
+
+- **ox_inventory** - Required for item management
+- **ox_lib** - Required for UI notifications and callbacks
+
+## 🎮 Usage
+
+Players can use any case item from their inventory to trigger the spinning wheel interface. The wheel will spin for 8 seconds before landing on a reward based on the configured weights.
+
+## ⚙️ Configuration
+
+Edit `config.lua` to customize:
+- Spin duration and cooldown times
+- Case types and their rewards
+- Item weights (probability)
+- Reward amounts
+- UI colors and titles
+
+### Weight System
+Higher weight values = higher chance of receiving that item
+- Common items: 40-60 weight
+- Uncommon items: 20-40 weight
+- Rare items: 5-20 weight
+- Ultra rare items: 1-5 weight
+
+## 📦 Ox Inventory Items
+
+Add these to your ox_inventory `items.lua`:
+
+```lua
 ["fleeca_case"] = {
     label = "Fleeca Bank Case",
     weight = 2000,
@@ -14,7 +97,7 @@ https://docs.samueldev.shop
         image = "case_1.png",
     },
     server = {
-        export = 'sd-lootboxes.useFleeca_case',
+        export = 'sd-cases.useFleeca_case',
     }
 },
 
@@ -29,7 +112,7 @@ https://docs.samueldev.shop
         image = "case_2.png",
     },
     server = {
-        export = 'sd-lootboxes.useHouse_case',
+        export = 'sd-cases.useHouse_case',
     }
 },
 
@@ -44,7 +127,7 @@ https://docs.samueldev.shop
         image = "case_3.png",
     },
     server = {
-        export = 'sd-lootboxes.useChopshop_case',
+        export = 'sd-cases.useChopshop_case',
     }
 },
 
@@ -59,7 +142,7 @@ https://docs.samueldev.shop
         image = "case_4.png",
     },
     server = {
-        export = 'sd-lootboxes.useJewelry_case',
+        export = 'sd-cases.useJewelry_case',
     }
 },
 
@@ -74,7 +157,7 @@ https://docs.samueldev.shop
         image = "case_5.png",
     },
     server = {
-        export = 'sd-lootboxes.usePacific_case',
+        export = 'sd-cases.usePacific_case',
     }
 },
 
@@ -89,6 +172,65 @@ https://docs.samueldev.shop
         image = "case_6.png",
     },
     server = {
-        export = 'sd-lootboxes.useCasino_case',
+        export = 'sd-cases.useCasino_case',
     }
 },
+```
+
+## 🎨 Images
+
+Place the corresponding case images in your inventory image folder:
+- `case_1.png` - Fleeca Bank Case
+- `case_2.png` - House Robbery Case
+- `case_3.png` - Chop Shop Case
+- `case_4.png` - Jewelry Store Case
+- `case_5.png` - Pacific Bank Case
+- `case_6.png` - Casino Heist Case
+
+## 📝 Adding Custom Cases
+
+To add a new case type:
+
+1. Add the case definition to `config.lua`:
+```lua
+my_custom_case = {
+    name = 'Custom Case',
+    title = 'MY CUSTOM CASE',
+    titleColor = '#HEX_COLOR',
+    items = {
+        {
+            id = 1,
+            name = 'Item Display Name',
+            item = 'item_spawn_name', -- Optional for item rewards
+            weight = 50, -- Higher = more common
+            amount = 1, -- Display amount
+            reward = {
+                type = 'item', -- or 'money'
+                item = 'item_spawn_name', -- For item type
+                amount = 1, -- Actual reward amount
+                moneyType = 'cash' -- For money type (cash/bank)
+            }
+        },
+        -- Add more items...
+    }
+}
+```
+
+2. Add the corresponding item to ox_inventory
+3. Add the case image to your inventory images
+
+## 🔧 Exports
+
+### Client Exports
+- `openCase(caseType)` - Opens a specific case type
+
+### Server Exports
+- `giveCase(source, caseType, amount)` - Gives a case to a player
+
+## 📞 Support
+
+For issues, questions, or suggestions, please visit the GitHub repository or contact the developer.
+
+## 📄 License
+
+This resource is provided as-is. Please respect the developer's work and do not redistribute without permission.
