@@ -28,6 +28,8 @@ Store: [Click Here](https://fivem.samueldev.shop)
 3. Place the `sd-cases` folder into your server's `resources` directory.
 4. Add `ensure sd-cases` to your `server.cfg` to ensure the resource starts with your server.
 
+For ox_inventory users, there are pre-written items for you below you can use if you want to use the default cases I made!
+
 ## 📖 Dependencies
 
 - **ox_lib**
@@ -151,12 +153,12 @@ Add these to your ox_inventory `items.lua`, if you want to use my default cases:
 ## 🎨 Images
 
 Place the corresponding case images in your inventory image folder:
-- `case_1.png` - Fleeca Bank Case
-- `case_2.png` - House Robbery Case
-- `case_3.png` - Chop Shop Case
-- `case_4.png` - Jewelry Store Case
-- `case_5.png` - Pacific Bank Case
-- `case_6.png` - Casino Heist Case
+- `case_1.png`
+- `case_2.png`
+- `case_3.png`
+- `case_4.png`
+- `case_5.png`
+- `case_6.png`
 
 ## 📝 Adding Custom Cases
 
