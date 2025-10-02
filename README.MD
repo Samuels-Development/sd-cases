@@ -187,16 +187,6 @@ Add these to your ox_inventory `items.lua`, if you want to use my default cases:
 },
 ```
 
-## 🎨 Images
-
-Place the corresponding case images in your inventory image folder:
-- `case_1.png`
-- `case_2.png`
-- `case_3.png`
-- `case_4.png`
-- `case_5.png`
-- `case_6.png`
-
 ## 📝 Adding Custom Cases
 
 To add a new case type:
