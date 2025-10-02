@@ -30,6 +30,43 @@ Store: [Click Here](https://fivem.samueldev.shop)
 
 For ox_inventory users, there are pre-written items for you below you can use if you want to use the default cases I made!
 
+## 🛠️ Building the UI
+
+If you need to modify the UI or build from source, follow these instructions:
+
+### Requirements
+- **Node.js** (v16.0.0 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+
+### Build Instructions
+
+1. Navigate to the `web` directory:
+```bash
+cd web
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Build the UI for production:
+```bash
+npm run build
+```
+
+4. The built files will be generated in the `web/build` directory
+
+### Development Mode
+
+For development with hot-reload:
+```bash
+npm start
+```
+This will start the development server on `http://localhost:3000`
+
+**Note:** The pre-built UI files are already included in releases, so you only need to build if you're modifying the UI code.
+
 ## 📖 Dependencies
 
 - **ox_lib**
