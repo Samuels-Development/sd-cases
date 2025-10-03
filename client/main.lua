@@ -48,6 +48,12 @@ local GenerateWeightedDisplayList = function(items, targetCount)
         weightedList[i], weightedList[j] = weightedList[j], weightedList[i]
     end
 
+    -- Additional shuffle to ensure different starting positions each time
+    for i = #weightedList, 2, -1 do
+        local j = math.random(i)
+        weightedList[i], weightedList[j] = weightedList[j], weightedList[i]
+    end
+
     return weightedList
 end
 

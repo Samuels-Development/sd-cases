@@ -8,7 +8,7 @@ interface LootItem {
   amount: number;
   weight: number;
   percentage: number;
-  rarity?: 'common' | 'rare' | 'epic' | 'legendary';
+  rarity?: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic';
   icon: string;
   image?: string;
 }
@@ -44,7 +44,10 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedItem, setSelectedItem] = useState<LootItem | null>(null);
   const [currentOffset, setCurrentOffset] = useState(0);
-  const [centerItemIndex, setCenterItemIndex] = useState(0);
+  const [centerItemIndex, setCenterItemIndex] = useState(() => {
+    // Randomize starting position when component mounts
+    return Math.floor(Math.random() * 50);
+  });
   const [showSoundPicker, setShowSoundPicker] = useState(false);
   const [selectedSound, setSelectedSound] = useState(3);
   const [playingSound, setPlayingSound] = useState<number | null>(null);
@@ -55,11 +58,13 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
 
   const items: LootItem[] = propsItems || [];
 
-  const calculateRarity = (percentage: number): 'common' | 'rare' | 'epic' | 'legendary' => {
-    if (percentage >= 30) return 'common';
+  const calculateRarity = (percentage: number): 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic' => {
+    if (percentage >= 40) return 'common';
+    if (percentage >= 25) return 'uncommon';
     if (percentage >= 15) return 'rare';
     if (percentage >= 5) return 'epic';
-    return 'legendary';
+    if (percentage >= 1) return 'legendary';
+    return 'mythic';
   };
 
   const itemsWithRarity = items.map(item => ({
@@ -383,12 +388,12 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
     const animate = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 4);
+      const easeOut = 1 - Math.pow(1 - progress, 5);
       const currentStep = totalSteps * easeOut;
       const itemsMovedComplete = Math.floor(currentStep);
       const itemProgress = currentStep - itemsMovedComplete;
       const newCenterIndex = (startIndex + itemsMovedComplete) % itemsWithRarity.length;
-      const pixelOffset = itemProgress * 198;
+      const pixelOffset = itemProgress * 182;
 
       setCenterItemIndex(newCenterIndex);
       setCurrentOffset(pixelOffset);
@@ -409,12 +414,12 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
         const finalItemIndex = newCenterIndex;
         const finalOffset = pixelOffset;
         const landedItemIndex = targetIndex;
-        const centerDuration = 800;
+        const centerDuration = 1200;
         const centerStartTime = Date.now();
         const startCenterIndex = finalItemIndex;
         const startOffset = finalOffset;
         let itemsToMove = (landedItemIndex - finalItemIndex + itemsWithRarity.length) % itemsWithRarity.length;
-        const totalPixelDistance = itemsToMove * 198 - startOffset;
+        const totalPixelDistance = itemsToMove * 182 - startOffset;
 
         const centerAnimate = () => {
           const centerElapsed = Date.now() - centerStartTime;
@@ -424,9 +429,9 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
           if (centerProgress < 1) {
             const pixelsMoved = totalPixelDistance * easeCenter;
             const currentPixelOffset = startOffset + pixelsMoved;
-            const itemsMoved = Math.floor(currentPixelOffset / 198);
+            const itemsMoved = Math.floor(currentPixelOffset / 182);
             const newCenterIdx = (startCenterIndex + itemsMoved + itemsWithRarity.length) % itemsWithRarity.length;
-            const newOffset = currentPixelOffset - (itemsMoved * 198);
+            const newOffset = currentPixelOffset - (itemsMoved * 182);
 
             setCenterItemIndex(newCenterIdx);
             setCurrentOffset(newOffset);
@@ -460,53 +465,63 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
     }
   };
 
-  const getRarityColor = (rarity: 'common' | 'rare' | 'epic' | 'legendary', isCenter: boolean = false) => {
+  const getRarityColor = (rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic', isCenter: boolean = false) => {
     const baseColors = {
       common: 'relative bg-gradient-to-br from-gray-600/70 via-gray-700/50 to-gray-900/90',
+      uncommon: 'relative bg-gradient-to-br from-green-600/70 via-green-700/50 to-green-950/90',
       rare: 'relative bg-gradient-to-br from-blue-500/60 via-blue-700/50 to-blue-950/90',
       epic: 'relative bg-gradient-to-br from-purple-500/70 via-purple-700/50 to-purple-950/90',
-      legendary: 'relative bg-gradient-to-br from-yellow-500/80 via-orange-600/60 to-yellow-900/90'
+      legendary: 'relative bg-gradient-to-br from-yellow-500/80 via-orange-600/60 to-yellow-900/90',
+      mythic: 'relative bg-gradient-to-br from-red-500/80 via-red-700/60 to-red-950/90'
     };
 
     const highlightColors = {
       common: 'relative bg-gradient-to-br from-gray-500/80 via-gray-600/60 to-gray-800',
+      uncommon: 'relative bg-gradient-to-br from-green-500/80 via-green-600/60 to-green-900',
       rare: 'relative bg-gradient-to-br from-blue-400/70 via-blue-600/60 to-blue-900',
       epic: 'relative bg-gradient-to-br from-purple-400/80 via-purple-600/60 to-purple-900',
-      legendary: 'relative bg-gradient-to-br from-yellow-400/90 via-orange-500/70 to-yellow-800 animate-pulse'
+      legendary: 'relative bg-gradient-to-br from-yellow-400/90 via-orange-500/70 to-yellow-800 animate-pulse',
+      mythic: 'relative bg-gradient-to-br from-red-400/90 via-red-600/70 to-red-900 animate-pulse'
     };
 
     const colors = isCenter && !isSpinning ? highlightColors : baseColors;
     return colors[rarity] || colors.common;
   };
 
-  const getRarityBorder = (rarity: 'common' | 'rare' | 'epic' | 'legendary') => {
+  const getRarityBorder = (rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic') => {
     const borders = {
       common: 'border-4 border-gray-500',
+      uncommon: 'border-4 border-green-500',
       rare: 'border-4 border-blue-400',
       epic: 'border-4 border-purple-400',
-      legendary: 'border-4 border-yellow-300'
+      legendary: 'border-4 border-yellow-300',
+      mythic: 'border-4 border-red-500'
     };
     return borders[rarity] || borders.common;
   };
 
-  const getRarityLabel = (rarity: 'common' | 'rare' | 'epic' | 'legendary') => {
+  const getRarityLabel = (rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic') => {
     const labels = {
       common: 'COMMON',
+      uncommon: 'UNCOMMON',
       rare: 'RARE',
       epic: 'EPIC',
-      legendary: 'LEGENDARY'
+      legendary: 'LEGENDARY',
+      mythic: 'MYTHIC'
     };
     return labels[rarity] || 'COMMON';
   };
 
-  const getRarityTextColor = (rarity: 'common' | 'rare' | 'epic' | 'legendary') => {
+  const getRarityTextColor = (rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic') => {
     const colors = {
-      common: 'text-gray-500',
-      rare: 'text-blue-400',
-      epic: 'text-purple-400',
-      legendary: 'text-yellow-400'
+      common: '#6b7280',
+      uncommon: '#22c55e',
+      rare: '#60a5fa',
+      epic: '#c084fc',
+      legendary: '#fbbf24',
+      mythic: '#f87171'
     };
-    return colors[rarity] || 'text-gray-500';
+    return colors[rarity] || '#6b7280';
   };
 
   const getGradientColors = (colorClass: string): string => {
@@ -655,24 +670,30 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
                 return (
                   <div
                     key={`${displayItem.actualIndex}-${idx}-${displayItem.position}`}
-                    className={`flex-shrink-0 w-48 h-44 ${getRarityColor(displayItem.item.rarity, isCenter)} ${getRarityBorder(displayItem.item.rarity)} rounded-xl p-4 flex flex-col items-center justify-between transition-all duration-300 ${
-                      isCenter && !isSpinning && !selectedItem ? 'scale-110' : 'scale-95'
-                    }`}
+                    className={`flex-shrink-0 w-44 h-40 ${getRarityColor(displayItem.item.rarity, isCenter)} ${getRarityBorder(displayItem.item.rarity)} rounded-xl p-3 flex flex-col items-center justify-between transition-all duration-300`}
                     style={{
                       boxShadow: isWinningItem
-                        ? displayItem.item.rarity === 'legendary'
+                        ? displayItem.item.rarity === 'mythic'
+                          ? '0 0 50px rgba(239, 68, 68, 1), inset 0 0 60px rgba(239, 68, 68, 0.6)'
+                          : displayItem.item.rarity === 'legendary'
                           ? '0 0 40px rgba(250, 204, 21, 1), inset 0 0 50px rgba(250, 204, 21, 0.5)'
                           : displayItem.item.rarity === 'epic'
                           ? '0 0 35px rgba(192, 132, 252, 1), inset 0 0 45px rgba(192, 132, 252, 0.5)'
                           : displayItem.item.rarity === 'rare'
                           ? '0 0 30px rgba(96, 165, 250, 1), inset 0 0 40px rgba(96, 165, 250, 0.5)'
+                          : displayItem.item.rarity === 'uncommon'
+                          ? '0 0 28px rgba(34, 197, 94, 1), inset 0 0 38px rgba(34, 197, 94, 0.5)'
                           : '0 0 25px rgba(156, 163, 175, 0.8), inset 0 0 35px rgba(156, 163, 175, 0.4)'
+                        : displayItem.item.rarity === 'mythic'
+                        ? '0 0 30px rgba(239, 68, 68, 0.8), inset 0 0 35px rgba(239, 68, 68, 0.4)'
                         : displayItem.item.rarity === 'legendary'
                         ? '0 0 25px rgba(250, 204, 21, 0.7), inset 0 0 30px rgba(250, 204, 21, 0.3)'
                         : displayItem.item.rarity === 'epic'
                         ? '0 0 20px rgba(192, 132, 252, 0.6), inset 0 0 25px rgba(192, 132, 252, 0.25)'
                         : displayItem.item.rarity === 'rare'
                         ? '0 0 15px rgba(96, 165, 250, 0.5), inset 0 0 20px rgba(96, 165, 250, 0.2)'
+                        : displayItem.item.rarity === 'uncommon'
+                        ? '0 0 12px rgba(34, 197, 94, 0.5), inset 0 0 18px rgba(34, 197, 94, 0.2)'
                         : 'inset 0 0 15px rgba(156, 163, 175, 0.1)',
                       animation: isWinningItem ? 'winning-pulse 1s ease-in-out infinite' : undefined
                     }}
@@ -680,17 +701,27 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
                     <div
                       className="absolute inset-0 rounded-xl opacity-30 pointer-events-none"
                       style={{
-                        background: displayItem.item.rarity === 'legendary'
+                        background: displayItem.item.rarity === 'mythic'
+                          ? 'radial-gradient(circle at center, rgba(239, 68, 68, 0.5) 0%, transparent 70%)'
+                          : displayItem.item.rarity === 'legendary'
                           ? 'radial-gradient(circle at center, rgba(250, 204, 21, 0.4) 0%, transparent 70%)'
                           : displayItem.item.rarity === 'epic'
                           ? 'radial-gradient(circle at center, rgba(192, 132, 252, 0.35) 0%, transparent 70%)'
                           : displayItem.item.rarity === 'rare'
                           ? 'radial-gradient(circle at center, rgba(96, 165, 250, 0.3) 0%, transparent 70%)'
+                          : displayItem.item.rarity === 'uncommon'
+                          ? 'radial-gradient(circle at center, rgba(34, 197, 94, 0.3) 0%, transparent 70%)'
                           : 'radial-gradient(circle at center, rgba(156, 163, 175, 0.15) 0%, transparent 70%)'
                       }}
                     ></div>
 
-                    <span className={`text-xs font-bold ${getRarityTextColor(displayItem.item.rarity)} tracking-wider opacity-80 relative z-10`}>
+                    <span
+                      className="text-xs font-bold tracking-wider relative z-10"
+                      style={{
+                        color: getRarityTextColor(displayItem.item.rarity),
+                        opacity: displayItem.item.rarity === 'mythic' || displayItem.item.rarity === 'legendary' ? 1 : 0.8
+                      }}
+                    >
                       {getRarityLabel(displayItem.item.rarity)}
                     </span>
                     <div className="mb-2 relative z-10 w-20 h-20 flex items-center justify-center overflow-hidden">

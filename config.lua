@@ -18,10 +18,12 @@ return {
     -- Diamond Ring (weight 5): 5/140 = 3.57% chance
     --
     -- Tips for configuring weights:
-    -- - Common items: weight 50-100 (very likely to drop)
-    -- - Uncommon items: weight 20-40 (moderate chance)
-    -- - Rare items: weight 5-15 (low chance)
-    -- - Ultra rare items: weight 1-5 (very low chance)
+    -- - Common items (Gray): weight 50-100+ (40%+ drop chance - very likely to drop)
+    -- - Uncommon items (Green): weight 30-50 (25-40% drop chance - fairly common)
+    -- - Rare items (Blue): weight 15-30 (15-25% drop chance - moderate chance)
+    -- - Epic items (Purple): weight 5-15 (5-15% drop chance - low chance)
+    -- - Legendary items (Gold): weight 1-5 (1-5% drop chance - very low chance)
+    -- - Mythic items (Red): weight <1 (<1% drop chance - extremely rare)
     Cases = {
         fleeca_case = { -- Item Name
             name = 'Fleeca Bank Case',
@@ -30,8 +32,8 @@ return {
             items = {
                 {
                     id = 1,
-                    name = 'Marked Bills',
-                    weight = 60,
+                    name = 'Marked Bills', -- Common (Gray)
+                    weight = 80,
                     reward = {
                         type = 'money',
                         amount = 250,
@@ -40,9 +42,9 @@ return {
                 },
                 {
                     id = 2,
-                    name = 'Bank Cards',
+                    name = 'Bank Cards', -- Uncommon (Green)
                     item = 'security_card_01',
-                    weight = 40,
+                    weight = 45,
                     reward = {
                         type = 'item',
                         item = 'security_card_01',
@@ -51,9 +53,9 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Band of Notes',
+                    name = 'Band of Notes', -- Rare (Blue)
                     item = 'bands',
-                    weight = 25,
+                    weight = 20,
                     reward = {
                         type = 'item',
                         item = 'bands',
@@ -62,9 +64,9 @@ return {
                 },
                 {
                     id = 4,
-                    name = 'Advanced Lockpick',
+                    name = 'Advanced Lockpick', -- Epic (Purple)
                     item = 'advancedlockpick',
-                    weight = 10,
+                    weight = 8,
                     reward = {
                         type = 'item',
                         item = 'advancedlockpick',
@@ -73,12 +75,23 @@ return {
                 },
                 {
                     id = 5,
-                    name = 'Diamond Ring',
+                    name = 'Diamond Ring', -- Legendary (Gold)
                     item = 'diamond_ring',
-                    weight = 5,
+                    weight = 3,
                     reward = {
                         type = 'item',
                         item = 'diamond_ring',
+                        amount = 1
+                    }
+                },
+                {
+                    id = 6,
+                    name = 'Gold Bar', -- Mythic (Red)
+                    item = 'goldbar',
+                    weight = 0.5,
+                    reward = {
+                        type = 'item',
+                        item = 'goldbar',
                         amount = 1
                     }
                 }
