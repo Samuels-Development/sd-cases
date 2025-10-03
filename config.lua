@@ -1,6 +1,6 @@
 return {
     -- Spin animation settings
-    SpinDuration = 8000, -- 8 seconds
+    SpinDuration = 10000, -- 10 seconds
     SpinCooldown = 3000, -- 3 seconds cooldown between spins
 
     -- Case definitions - item names map to case types

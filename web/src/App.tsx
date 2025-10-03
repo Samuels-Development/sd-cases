@@ -8,6 +8,7 @@ interface NUIMessage {
   itemId?: number;
   caseTitle?: string;
   caseTitleColor?: string;
+  spinDuration?: number;
 }
 
 declare global {
@@ -22,6 +23,7 @@ const App: React.FC = () => {
   const [spinResult, setSpinResult] = useState<number | null>(null);
   const [caseTitle, setCaseTitle] = useState<string>('MYSTERY LOOTBOX');
   const [caseTitleColor, setCaseTitleColor] = useState<string>('#FBBF24');
+  const [spinDuration, setSpinDuration] = useState<number>(8000);
 
   const GetParentResourceName = useCallback(() => {
     if (window.GetParentResourceName) {
@@ -55,6 +57,9 @@ const App: React.FC = () => {
           }
           if (data.caseTitleColor) {
             setCaseTitleColor(data.caseTitleColor);
+          }
+          if (data.spinDuration) {
+            setSpinDuration(data.spinDuration);
           }
           break;
           
@@ -117,6 +122,7 @@ const handleSpin = async (): Promise<boolean> => {
         onClose={handleClose}
         caseTitle={caseTitle}
         caseTitleColor={caseTitleColor}
+        spinDuration={spinDuration}
       />
     </div>
   );

@@ -3,6 +3,54 @@ local isUIOpen = false
 local canSpin = true
 local currentCaseType = nil
 
+--- Generates a weighted display list where items appear based on their weight
+--- @param items table The original items with weights
+--- @param targetCount number The desired number of items to display
+--- @return table Weighted list of items for display
+local GenerateWeightedDisplayList = function(items, targetCount)
+    local weightedList = {}
+    local totalWeight = 0
+
+    -- Calculate total weight
+    for _, item in ipairs(items) do
+        totalWeight = totalWeight + (item.weight or 1)
+    end
+
+    -- Calculate how many times each item should appear
+    for _, item in ipairs(items) do
+        local weight = item.weight or 1
+        local percentage = weight / totalWeight
+        local appearances = math.max(1, math.floor(percentage * targetCount))
+
+        -- Add the item multiple times based on its weight
+        for i = 1, appearances do
+            table.insert(weightedList, item)
+        end
+    end
+
+    -- Fill remaining slots with weighted random selection
+    while #weightedList < targetCount do
+        local rand = math.random() * totalWeight
+        local current = 0
+
+        for _, item in ipairs(items) do
+            current = current + (item.weight or 1)
+            if rand <= current then
+                table.insert(weightedList, item)
+                break
+            end
+        end
+    end
+
+    -- Shuffle the list to avoid predictable patterns
+    for i = #weightedList, 2, -1 do
+        local j = math.random(i)
+        weightedList[i], weightedList[j] = weightedList[j], weightedList[i]
+    end
+
+    return weightedList
+end
+
 --- Prepares items for UI display with images
 --- @param caseType string The case type
 --- @return table Prepared items for UI
@@ -16,19 +64,21 @@ local PrepareItemsForUI = function(caseType)
         totalWeight = totalWeight + (item.weight or 1)
     end
 
-    local uiItems = {}
+    -- First, prepare the base items with all their properties
+    local baseItems = {}
     for _, item in ipairs(case.items) do
         local weight = item.weight or 1
         local percentage = (weight / totalWeight) * 100
 
-        local uiItem = {
+        local baseItem = {
             id = item.id,
             name = item.name,
             value = item.value,
             amount = item.reward and item.reward.amount or 1,
             weight = weight,
             percentage = percentage,
-            icon = item.icon
+            icon = item.icon,
+            reward = item.reward
         }
 
         -- Check if it's a money reward or an item reward
@@ -36,18 +86,38 @@ local PrepareItemsForUI = function(caseType)
             -- Use money.png for money rewards
             local moneyImage = GetItemImage('money')
             if moneyImage then
-                uiItem.image = moneyImage
+                baseItem.image = moneyImage
             end
         elseif item.item then
             -- Use item-specific image
             local imagePath = GetItemImage(item.item)
             if imagePath then
-                uiItem.image = imagePath
+                baseItem.image = imagePath
             end
         end
 
+        table.insert(baseItems, baseItem)
+    end
+
+    -- Generate weighted display list (approximately 50 items for smooth scrolling)
+    local weightedItems = GenerateWeightedDisplayList(baseItems, 50)
+
+    -- Create UI items from the weighted list
+    local uiItems = {}
+    for _, item in ipairs(weightedItems) do
+        local uiItem = {
+            id = item.id,
+            name = item.name,
+            value = item.value,
+            amount = item.amount,
+            weight = item.weight,
+            percentage = item.percentage,
+            icon = item.icon,
+            image = item.image
+        }
         table.insert(uiItems, uiItem)
     end
+
     return uiItems
 end
 
@@ -76,7 +146,8 @@ local OpenLootboxUI = function(caseType)
         caseName = case.name,
         caseTitle = case.title or case.name,
         caseTitleColor = case.titleColor or '#FBBF24',
-        caseCount = caseCount
+        caseCount = caseCount,
+        spinDuration = Config.SpinDuration
     })
 
     SetNuiFocus(true, true)
@@ -122,8 +193,8 @@ RegisterNUICallback('spin', function(data, cb)
                 caseCount = newCaseCount
             })
 
-            -- Wait for animation to complete (8 seconds spin + 0.8 seconds centering)
-            SetTimeout(8800, function()
+            -- Wait for animation to complete (spin duration + 0.8 seconds centering)
+            SetTimeout(Config.SpinDuration + 800, function()
                 lib.callback('lootbox:claimReward', false, function(result)
                     if not result.success then
                         ShowNotification('Failed to claim reward', 'error')

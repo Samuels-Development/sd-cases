@@ -28,6 +28,7 @@ interface LootboxUIProps {
   onClose?: () => void;
   caseTitle?: string;
   caseTitleColor?: string;
+  spinDuration?: number;
 }
 
 const LootboxUI: React.FC<LootboxUIProps> = ({
@@ -37,7 +38,8 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
   onSpinResultHandled,
   onClose,
   caseTitle = 'MYSTERY LOOTBOX',
-  caseTitleColor = '#FBBF24'
+  caseTitleColor = '#FBBF24',
+  spinDuration = 8000
 }) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedItem, setSelectedItem] = useState<LootItem | null>(null);
@@ -373,7 +375,7 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
     const totalSteps = rotations * itemsWithRarity.length + stepsToTarget + randomOffset;
 
     const startTime = Date.now();
-    const duration = 8000;
+    const duration = spinDuration;
     let lastSoundTime = 0;
     let lastItemIndex = centerItemIndex;
     const startIndex = centerItemIndex;
