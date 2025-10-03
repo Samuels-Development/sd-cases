@@ -35,6 +35,7 @@ jobs:
           cp -r client sd-cases/
           cp -r server sd-cases/
           cp -r bridge sd-cases/
+          cp -r images sd-cases/
           cp config.lua sd-cases/
           cp fxmanifest.lua sd-cases/
           cp README.MD sd-cases/
