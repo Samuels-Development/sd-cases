@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Samuel#0008'
 description 'FiveM Lootbox System'
-version '1.0.3'
+version '1.0.2'
 
 shared_scripts {
     '@ox_lib/init.lua',
