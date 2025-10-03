@@ -84,12 +84,19 @@ Edit `config.lua` to customize:
 - Reward amounts
 - UI colors and titles
 
-### Weight System
-Higher weight values = higher chance of receiving that item
-- Common items: 40-60 weight
-- Uncommon items: 20-40 weight
-- Rare items: 5-20 weight
-- Ultra rare items: 1-5 weight
+### Weight & Rarity System
+The system automatically assigns rarity tiers based on drop chance percentages:
+
+| Rarity | Percentage | Suggested Weight Range | Color |
+|--------|-----------|------------------------|--------|
+| **Common** | ≥40% | 40+ | Gray |
+| **Uncommon** | 25-39% | 25-39 | Green |
+| **Rare** | 15-24% | 15-24 | Blue |
+| **Epic** | 5-14% | 5-14 | Purple |
+| **Legendary** | 1-4% | 1-4 | Gold |
+| **Mythic** | <1% | <1 | Red |
+
+**Note:** Percentages are automatically calculated based on the total weight of all items in a case. Higher weight values = higher chance of receiving that item.
 
 ## 📦 Ox Inventory Items
 
