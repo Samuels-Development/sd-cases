@@ -24,6 +24,11 @@ return {
     -- - Epic items (Purple): weight 5-15 (5-15% drop chance - low chance)
     -- - Legendary items (Gold): weight 1-5 (1-5% drop chance - very low chance)
     -- - Mythic items (Red): weight <1 (<1% drop chance - extremely rare)
+    --
+    -- OPTIONAL: You can override the auto-calculated rarity by adding a "rarity" field to any item:
+    -- rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary' | 'mythic'
+    -- This allows you to set the visual rarity independently from the drop chance.
+    -- Example: An item with weight 50 (common drop rate) can be displayed as 'legendary' visually.
     Cases = {
         fleeca_case = { -- Item Name
             name = 'Fleeca Bank Case',
@@ -32,7 +37,8 @@ return {
             items = {
                 {
                     id = 1,
-                    name = 'Marked Bills', -- Common (Gray)
+                    name = 'Marked Bills',
+                    rarity = 'common',
                     weight = 80,
                     reward = {
                         type = 'money',
@@ -42,8 +48,9 @@ return {
                 },
                 {
                     id = 2,
-                    name = 'Bank Cards', -- Uncommon (Green)
+                    name = 'Bank Cards',
                     item = 'security_card_01',
+                    rarity = 'uncommon',
                     weight = 45,
                     reward = {
                         type = 'item',
@@ -53,8 +60,9 @@ return {
                 },
                 {
                     id = 3,
-                    name = 'Band of Notes', -- Rare (Blue)
+                    name = 'Band of Notes',
                     item = 'bands',
+                    rarity = 'rare',
                     weight = 20,
                     reward = {
                         type = 'item',
@@ -64,8 +72,9 @@ return {
                 },
                 {
                     id = 4,
-                    name = 'Advanced Lockpick', -- Epic (Purple)
+                    name = 'Advanced Lockpick',
                     item = 'advancedlockpick',
+                    rarity = 'epic',
                     weight = 8,
                     reward = {
                         type = 'item',
@@ -75,8 +84,9 @@ return {
                 },
                 {
                     id = 5,
-                    name = 'Diamond Ring', -- Legendary (Gold)
+                    name = 'Diamond Ring',
                     item = 'diamond_ring',
+                    rarity = 'legendary',
                     weight = 3,
                     reward = {
                         type = 'item',
@@ -86,8 +96,9 @@ return {
                 },
                 {
                     id = 6,
-                    name = 'Gold Bar', -- Mythic (Red)
+                    name = 'Gold Bar',
                     item = 'goldbar',
+                    rarity = 'mythic',
                     weight = 0.5,
                     reward = {
                         type = 'item',
@@ -105,6 +116,7 @@ return {
                 {
                     id = 1,
                     name = 'Cash Stash',
+                    rarity = 'common',
                     weight = 50,
                     reward = {
                         type = 'money',
@@ -116,6 +128,7 @@ return {
                     id = 2,
                     name = 'Gold Chain',
                     item = 'goldchain',
+                    rarity = 'uncommon',
                     weight = 35,
                     reward = {
                         type = 'item',
@@ -127,6 +140,7 @@ return {
                     id = 3,
                     name = 'Small TV',
                     item = 'small_tv',
+                    rarity = 'common',
                     weight = 30,
                     reward = {
                         type = 'item',
@@ -138,6 +152,7 @@ return {
                     id = 4,
                     name = 'Rolex Watch',
                     item = 'rolex',
+                    rarity = 'epic',
                     weight = 15,
                     reward = {
                         type = 'item',
@@ -149,6 +164,7 @@ return {
                     id = 5,
                     name = 'Toaster',
                     item = 'toaster',
+                    rarity = 'rare',
                     weight = 8,
                     reward = {
                         type = 'item',
@@ -159,6 +175,7 @@ return {
                 {
                     id = 6,
                     name = 'Safe Contents',
+                    rarity = 'legendary',
                     weight = 3,
                     reward = {
                         type = 'money',
@@ -177,6 +194,7 @@ return {
                     id = 1,
                     name = 'Scrap Metal',
                     item = 'metalscrap',
+                    rarity = 'common',
                     weight = 60,
                     reward = {
                         type = 'item',
@@ -188,6 +206,7 @@ return {
                     id = 2,
                     name = 'Steel Parts',
                     item = 'steel',
+                    rarity = 'uncommon',
                     weight = 40,
                     reward = {
                         type = 'item',
@@ -199,6 +218,7 @@ return {
                     id = 3,
                     name = 'Nitrous',
                     item = 'nitrous',
+                    rarity = 'rare',
                     weight = 15,
                     reward = {
                         type = 'item',
@@ -210,6 +230,7 @@ return {
                     id = 4,
                     name = 'Electronic Kit',
                     item = 'electronickit',
+                    rarity = 'epic',
                     weight = 5,
                     reward = {
                         type = 'item',
@@ -228,6 +249,7 @@ return {
                     id = 1,
                     name = 'Gold Chains',
                     item = 'goldchain',
+                    rarity = 'uncommon',
                     weight = 50,
                     reward = {
                         type = 'item',
@@ -239,6 +261,7 @@ return {
                     id = 2,
                     name = 'Diamond Ring',
                     item = 'diamond_ring',
+                    rarity = 'legendary',
                     weight = 30,
                     reward = {
                         type = 'item',
@@ -250,6 +273,7 @@ return {
                     id = 3,
                     name = 'Gold Bar',
                     item = 'goldbar',
+                    rarity = 'mythic',
                     weight = 15,
                     reward = {
                         type = 'item',
@@ -261,6 +285,7 @@ return {
                     id = 4,
                     name = 'Luxury Watch',
                     item = 'rolex',
+                    rarity = 'epic',
                     weight = 20,
                     reward = {
                         type = 'item',
@@ -272,6 +297,7 @@ return {
                     id = 5,
                     name = 'Roll of Notes',
                     item = 'rolls',
+                    rarity = 'rare',
                     weight = 3,
                     reward = {
                         type = 'item',
@@ -290,6 +316,7 @@ return {
                     id = 1,
                     name = 'Gold Bars',
                     item = 'goldbar',
+                    rarity = 'legendary',
                     weight = 35,
                     reward = {
                         type = 'item',
@@ -300,6 +327,7 @@ return {
                 {
                     id = 2,
                     name = 'Mega Cash Bundle',
+                    rarity = 'rare',
                     weight = 40,
                     reward = {
                         type = 'money',
@@ -311,6 +339,7 @@ return {
                     id = 3,
                     name = 'Band of Notes',
                     item = 'bands',
+                    rarity = 'uncommon',
                     weight = 20,
                     reward = {
                         type = 'item',
@@ -322,6 +351,7 @@ return {
                     id = 4,
                     name = 'Crypto USB',
                     item = 'cryptostick',
+                    rarity = 'epic',
                     weight = 10,
                     reward = {
                         type = 'item',
@@ -333,6 +363,7 @@ return {
                     id = 5,
                     name = 'Secured Safe',
                     item = 'secured_safe',
+                    rarity = 'mythic',
                     weight = 2,
                     reward = {
                         type = 'item',
@@ -351,6 +382,7 @@ return {
                     id = 1,
                     name = 'Roll of Notes',
                     item = 'rolls',
+                    rarity = 'uncommon',
                     weight = 60,
                     reward = {
                         type = 'item',
@@ -361,6 +393,7 @@ return {
                 {
                     id = 2,
                     name = 'Cash Trolley',
+                    rarity = 'rare',
                     weight = 30,
                     reward = {
                         type = 'money',
@@ -372,6 +405,7 @@ return {
                     id = 3,
                     name = 'Expensive Champagne',
                     item = 'expensive_champagne',
+                    rarity = 'epic',
                     weight = 25,
                     reward = {
                         type = 'item',
@@ -383,6 +417,7 @@ return {
                     id = 4,
                     name = 'Diamond Necklace',
                     item = 'md_diamondnecklace',
+                    rarity = 'legendary',
                     weight = 10,
                     reward = {
                         type = 'item',
@@ -394,6 +429,7 @@ return {
                     id = 5,
                     name = 'Presidential Watch',
                     item = 'md_presidentialwatch',
+                    rarity = 'mythic',
                     weight = 1,
                     reward = {
                         type = 'item',

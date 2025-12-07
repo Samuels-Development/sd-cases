@@ -69,7 +69,7 @@ const LootboxUI: React.FC<LootboxUIProps> = ({
 
   const itemsWithRarity = items.map(item => ({
     ...item,
-    rarity: calculateRarity(item.percentage)
+    rarity: item.rarity || calculateRarity(item.percentage) // Use explicit rarity if provided, otherwise calculate
   }));
 
   const soundOptions: SoundOption[] = [

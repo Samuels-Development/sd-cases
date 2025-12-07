@@ -83,6 +83,7 @@ local PrepareItemsForUI = function(caseType)
             amount = item.reward and item.reward.amount or 1,
             weight = weight,
             percentage = percentage,
+            rarity = item.rarity,
             icon = item.icon,
             reward = item.reward
         }
@@ -118,6 +119,7 @@ local PrepareItemsForUI = function(caseType)
             amount = item.amount,
             weight = item.weight,
             percentage = item.percentage,
+            rarity = item.rarity,
             icon = item.icon,
             image = item.image
         }
